@@ -5,6 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    
                     <div class="card-header">{{ __('Chief Login') }}</div>
 
                     <div class="card-body">
@@ -57,11 +64,9 @@
                                         {{ __('Login') }}
                                     </button>
 
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        <a class="btn btn-link" href="{{ route('chief.forgetpassword') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
-                                    @endif
                                 </div>
                             </div>
                         </form>
