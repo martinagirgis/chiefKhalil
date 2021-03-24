@@ -8,7 +8,9 @@
 <body>
 
 <div class="pre-loader">
-    @yield('pre-loader')
+{{--
+    @include('admin.includes.structure.pre_loader')
+--}}
 </div>
 
 <div class="header">

@@ -10,6 +10,23 @@
     </div>
     <div class="right-sidebar-body customscroll">
         <div class="right-sidebar-body-content">
+
+
+            <h4 class="weight-600 font-18 pb-10">Select Language</h4>
+            <div class="sidebar-btn-group pb-30 mb-10">
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+
+                    @if(  LaravelLocalization::getCurrentLocaleName() == $properties['native'] )
+                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="btn btn-outline-primary active">
+                        {{ $properties['native'] }}
+                    </a>
+                    @else
+                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="btn btn-outline-primary">
+                            {{ $properties['native'] }}
+                        </a>
+                    @endif
+                @endforeach
+            </div>
             <h4 class="weight-600 font-18 pb-10">Header Background</h4>
             <div class="sidebar-btn-group pb-30 mb-10">
                 <a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
@@ -64,6 +81,7 @@
                     <input type="radio" id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input" value="icon-list-style-6">
                     <label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
                 </div>
+
             </div>
 
             <div class="reset-options pt-30 text-center">
