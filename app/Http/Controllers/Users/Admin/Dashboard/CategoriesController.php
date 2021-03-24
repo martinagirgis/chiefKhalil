@@ -57,6 +57,9 @@ class CategoriesController extends Controller
        if($validator->fails()){
            return  redirect()->back()->withErrors($validator)->withInputs($request->all());
        }else {
+           $coverName = time() . '.' . $request->img->getClientOriginalExtension();
+           $request->image->move(public_path('/assets/site/images/sponsors'), $coverName);
+
            Category::create($request->all());
            return redirect()->route('categories.index')->with('success', 'The Category has created successfully.');
        }
