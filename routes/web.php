@@ -26,6 +26,8 @@ Route::group(
         Auth::routes();
 
         Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/verify','Auth\VerifyController@getVerify')->name('getverify');
+        Route::post('/verify','Auth\VerifyController@postVerify')->name('verify');
 
         // Admin routes
         Route::prefix('admin')->group(function(){
