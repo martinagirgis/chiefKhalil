@@ -15,12 +15,12 @@
                 <!-- Default Basic Forms Start -->
                 <div class="pd-20 card-box mb-30">
 
-                    <form method="post" action="{{route('categories.store')}}">
+                    <form method="post" action="{{route('categories.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Arabic Name</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" placeholder="Arabic Name" name="name_ar">
+                                <input class="form-control" type="text" placeholder="Arabic Name" name="name_ar" style="direction: rtl;text-align:right">
 {{--                                @error('name_ar')--}}
 {{--                                <small class="form-text text-danger">{{$message}}</small>--}}
 {{--                                @enderror()--}}
@@ -35,15 +35,13 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Description Arabic</label>
                             <div class="col-sm-12 col-md-10">
-                                <textArea placeholder="Description in Arabic" class="form-control" name="description_ar" >
-                                </textArea>
+                                <textArea placeholder="Description in Arabic" class="form-control" name="description_ar" style="direction: rtl;text-align:right"></textArea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Description English</label>
                             <div class="col-sm-12 col-md-10">
-                                 <textArea placeholder="Description in Arabic" class="form-control" name="description_en" >
-                                </textArea>
+                                 <textArea placeholder="Description in Arabic" class="form-control" name="description_en" ></textArea>
                             </div>
                         </div>
                         <div class="form-group row">

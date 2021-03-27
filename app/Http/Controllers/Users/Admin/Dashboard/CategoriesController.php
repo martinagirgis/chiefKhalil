@@ -57,10 +57,16 @@ class CategoriesController extends Controller
        if($validator->fails()){
            return  redirect()->back()->withErrors($validator)->withInputs($request->all());
        }else {
-           $coverName = time() . '.' . $request->img->getClientOriginalExtension();
-           $request->image->move(public_path('/assets/site/images/sponsors'), $coverName);
+           $coverName = time() . '.' . $request->image->getClientOriginalExtension();
+           $request->image->move(public_path('/assets/images/categories'), $coverName);
 
-           Category::create($request->all());
+           Category::create([
+               'name_ar'=>$request->name_ar,
+               'name_en'=>$request->name_en,
+               'description_ar'=>$request->description_ar,
+               'description_en'=>$request->description_en,
+               'image'=>$coverName
+           ]);
            return redirect()->route('categories.index')->with('success', 'The Category has created successfully.');
        }
     }
@@ -73,6 +79,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
+        $category = Category::find($id);
         return view('admin.sections.categories.show',compact('category'));
 
     }
@@ -85,8 +92,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
+        $category = Category::find($id);
         return view('admin.sections.categories.edit',compact('category'));
-
     }
 
     /**
@@ -98,30 +105,62 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name_ar' => 'required',
+        $rules =[
+            /*'name_ar' => 'required',
             'name_en' => 'required',
             'description_ar' => 'required',
-            'description_en' => 'required'
-        ]);
+            'description_en' => 'required',
+            'image'=>'required',*/
+        ];
+        $messages = [
+        /*    'name_ar.required'=> 'this field can not be empty',
+            'name_en.required'=> 'this field can not be empty',
+            'description_ar.required'=> 'this field can not be empty',
+            'description_en.required'=> 'this field can not be empty',
+            'image.required'=> 'this field can not be empty',*/
+        ];
+        $validator = Validator::make($request->all(),$rules,$messages);
 
-        $category->update($request->all());
+        if($validator->fails()){
+            return  redirect()->back()->withErrors($validator)->withInputs($request->all());
+        }else {
+            if($request->image != $category->image){
+                unlink(public_path('/assets/images/categories') .'/' . $category->image);
+                $coverName = time() . '.' . $request->image->getClientOriginalExtension();
+                $request->image->move(public_path('/assets/images/categories'), $coverName);
+            }else{
+                $coverName = $request->image;
+            }
+            dd($category->name_ar);
 
-        return redirect()->route('categories.index')
-            ->with('success','Product updated successfully');
+            $category->update([
+                'name_ar' => $request->name_ar,
+                'name_en' => $request->name_en,
+                'description_ar' => $request->description_ar,
+                'description_en' => $request->description_en,
+                'image' => $coverName
+            ]);
+
+            return redirect()->route('categories.index')
+                ->with('success','Product updated successfully');
+        }
+
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Category $category)
+    public function destroy($category)
     {
-        $category->delete();
 
-        return redirect()->route('categories.index')
-            ->with('success','Product deleted successfully');
+        $old = Category::find($category);
+        $old->delete();
+
+        return redirect()->route('categories.index')->with('success','Product deleted successfully');
     }
 }

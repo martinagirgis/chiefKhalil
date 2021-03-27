@@ -9,3 +9,5 @@
 <script src="{{asset('assets/admin/src/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('assets/admin/src/plugins/datatables/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{asset('assets/admin/vendors/scripts/dashboard.js')}}"></script>
+<script src="{{asset('assets/admin/src/plugins/jquery-steps/jquery.steps.js')}}"></script>
+<script src="{{asset('assets/admin/vendors/scripts/steps-setting.js')}}"></script>

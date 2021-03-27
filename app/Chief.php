@@ -9,10 +9,12 @@ class Chief extends Authenticatable
 {
     use Notifiable;
 
+
     protected $guard = 'chief';
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'fname','lname','gender','email', 'password','phone','image','gender',
+            'biography', 'professionalLife', 'instagram', 'twitter', 'facebook'
     ];
 
     protected $hidden = [

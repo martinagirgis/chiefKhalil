@@ -17,12 +17,15 @@ class CreateLiveStreamVideosTable extends Migration
             $table->id();
             $table->string('title_ar');
             $table->string('title_en');
+
             $table->string('description_ar');
             $table->string('description_en');
-            $table->timestamps('start_date');
+
+            $table->datetime('start_date');
             $table->string('location');
             $table->string('days');
             $table->string('url');
+
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
 

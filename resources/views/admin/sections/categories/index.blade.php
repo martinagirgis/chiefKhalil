@@ -62,22 +62,19 @@
                     <td colspan="3">
                         <div class="row">
                             <div class="col-sm-4">
-                                <form action="">
-                                    <button class="btn btn-dark" style="width:100%">Show</button>
-                                </form>
+                                    <a class="btn btn-dark" style="width:100%" href="{{route('categories.show',['category'=>$category->id])}}">Show</a>
                             </div>
                             <div class="col-sm-4">
-                                <form action="">
-                                    <button class="btn btn-primary" style="width:100%">Edit</button>
-                                </form>
+                                    <a class="btn btn-primary" style="width:100%" href="{{route('categories.edit',['category'=>$category->id])}}">Edit</a>
                             </div>
                                 <div class="col-sm-4">
-                                 <form action="">
-                                    <button class="btn btn-danger" style="width:100%">Delete</button>
-                                 </form>
+                                    <form method="post" action="{{route('categories.destroy',['category'=>$category->id])}}">
+                                        @csrf
+                                        @method('DELETE')
+                                     <button type="submit" class="btn btn-danger" style="width:100%" >Delete</button>
+                                    </form>
                                 </div>
                         </div>
-
                     </td>
 
                 </tr>
