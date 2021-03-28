@@ -43,6 +43,8 @@ class AdminForgotPasswordController extends Controller
 
         Mail::to($request->email)->send(new SendSBTorecipient($token));
 
+        return redirect('admin/login')->with('success','email successfully send chick your mail');
+
     /**
         * Send email to the email above with a link to your password reset
         * something like url('password-reset/' . $token)
@@ -88,7 +90,7 @@ class AdminForgotPasswordController extends Controller
    
        DB::table('password_resets')->where('email', $user->email)->delete();
    
-       return redirect('admin/login')->with('success','event successfully updated');
+       return redirect('admin/login')->with('success','password successfully changed');
     }
 
 }

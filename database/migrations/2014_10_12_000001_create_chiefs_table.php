@@ -24,6 +24,10 @@ class CreateChiefsTable extends Migration
             $table->string('phone');
             $table->string('image');
 
+            $table->string('facebock')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
+
             $table->timestamps();
         });
     }

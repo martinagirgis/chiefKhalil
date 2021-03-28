@@ -48,7 +48,8 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
-        return $this->registered($request,$user) ?: redirect('/verify?phone='.$request->phone);
+        // return $this->registered($request,$user) ?: redirect('/');
+        return $this->registered($request,$user) ?: redirect('/verify?phone=' . $request->phone);
     }
 
     /**
@@ -60,7 +61,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'fname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -74,17 +76,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $imageName = time().'.'.$data['image']->extension();
+        $data['image']->move(public_path('assets/site/backImages/users'), $imageName);
+        $allphone = $data['countryCode'] . $data['phone'];
         $user = User::create([
-            'name' => $data['name'],
+            'fname' => $data['fname'],
+            'lname' => $data['lname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone'=>$data['phone'],
             'active'=>0,
-            // 'code'=>SendCode::sendCode($data['phone']),
+            'gender' => $data['gender'],
+            'state' => 1,
+            'image' => $imageName,
+            'countryCode' => $data['countryCode'],
+            'code'=>SendCode::sendCode($data['countryCode'],$data['phone']),
         ]);
-        //if($user){
+        //if($user){ 
           //  $user->code=SendCode::sendCode($user->phone);
             $user->save();
         //}
+        session()->put('userId', $data['email']);
     }
 }

@@ -1,4 +1,174 @@
-@extends('layouts.app')
+@extends('site.layouts.site')
+@section('loading')
+    @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
+    Loading...
+    @elseif (    LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+    ...جاري التحميل
+    @endif
+@endsection
+
+@section('title')
+    @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
+    Login Admin
+    @elseif (    LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+    تسجيل دخول المسؤول
+    @endif
+@endsection
+
+@section('titleName')
+    @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
+    Login Admin
+    @elseif (    LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+     تسجيل دخول المسؤول
+    @endif
+@endsection
+
+@section('header')
+    @include('site.includes.header')
+@endsection
+
+@section('content')
+@if (  LaravelLocalization::getCurrentLocaleName() == 'English')
+    
+    <section class="ls s-pt-75 s-pb-60 s-py-lg-100 shop-account-login">
+        <div class="container">
+            <div class="row">
+
+                <div class="d-none d-lg-block divider-60"></div>
+
+                <main class="col-lg-12">
+                    <article>
+                        <!-- .entry-header -->
+                        <div class="entry-content">
+                            <div class="woocommerce">
+
+                                @if ($message = Session::get('success'))
+                                    <div class="alert alert-success alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @endif
+
+                                <form class="woocomerce-form woocommerce-form-login login text-center" method="POST" action="{{ route('admin.login.submit') }}">
+                                    @csrf
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="username">Email 
+                                            <span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text text-center @error('email') is-invalid @enderror" name="email" id="email1" value="" placeholder="Email ">
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </p>
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="password">Password 
+                                            <span class="required">*</span>
+                                        </label>
+                                        <input class="woocommerce-Input woocommerce-Input--text input-text text-center @error('password') is-invalid @enderror" name="password" type="password" id="password1" placeholder="Password ">
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </p>
+
+                                    <p class="form-row">
+                                        <button type="submit" class="woocommerce-Button button" id="signIn">signIn</button>
+                                    </p>
+                                    <p class="woocommerce-LostPassword lost_password">
+                                        <a href="{{ route('admin.password.forget') }}">Forgot Your Password ?</a>
+                                    </p>
+
+                                </form>
+                            </div>
+                        </div>
+                        <!-- .entry-content -->
+                    </article>
+
+                </main>
+
+                <div class="d-none d-lg-block divider-50"></div>
+            </div>
+
+        </div>
+    </section>
+
+    @elseif (    LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+    <section class="ls s-pt-75 s-pb-60 s-py-lg-100 shop-account-login">
+        <div class="container">
+            <div class="row">
+
+                <div class="d-none d-lg-block divider-60"></div>
+
+                <main class="col-lg-12">
+                    <article>
+                        <!-- .entry-header -->
+                        <div class="entry-content">
+                            <div class="woocommerce">
+
+                                @if ($message = Session::get('success'))
+                                    <div class="alert alert-success alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @endif
+
+                                <form class="woocomerce-form woocommerce-form-login login text-center" action="{{ route('admin.login.submit') }}" method="post">
+                                    @csrf
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="username">البريد الإلكتروني
+                                            <span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text text-center @error('email') is-invalid @enderror" name="email" id="email1" value="" placeholder="البريد الإلكتروني">
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </p>
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="password">كلمة المرور
+                                            <span class="required">*</span>
+                                        </label>
+                                        <input class="woocommerce-Input woocommerce-Input--text input-text text-center @error('password') is-invalid @enderror" name="password" type="password" id="password1" placeholder="كلمة المرور">
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+                                    <p class="form-row">
+                                        <button type="submit"  class="woocommerce-Button button" id="signIn">دخول</button>
+                                    </p>
+                                    <p class="woocommerce-LostPassword lost_password">
+                                        <a href="{{ route('admin.password.forget') }}">نسيت كلمة المرور ؟</a>
+                                    </p>
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </article>
+
+                </main>
+
+                <div class="d-none d-lg-block divider-50"></div>
+            </div>
+
+        </div>
+    </section>
+    @endif
+@endsection
+
+@section('footer')
+    @include('site.includes.footer')
+@endsection
+
+
+
+{{-- @extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -64,7 +234,7 @@
                                     </button>
 
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        <a class="btn btn-link" href="{{ route('admin.password.forget') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
@@ -76,4 +246,4 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection --}}

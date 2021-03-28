@@ -22,11 +22,13 @@ class AdminRegisterController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'name' => ['required', 'string', 'max:255'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-
+        $imageName = time().'.'.$request['image']->extension();
+        $request['image']->move(public_path('assets/site/backImages/admins'), $imageName);
+        $request['image'] = $imageName;
         $request['password'] = Hash::make($request->password);
         Admin::create($request->all());
 

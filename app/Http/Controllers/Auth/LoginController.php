@@ -40,30 +40,36 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // public function login(Request $request)
-    // {
-    //     $this->validateLogin($request);
-    //     if($this->hasTooManyLoginAttempts($request)){
-    //         $this->fireLockoutResponse($request);
-    //     }
-    //      //-------------------
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+        if($this->hasTooManyLoginAttempts($request)){
+            $this->fireLockoutResponse($request);
+        }
+         //-------------------
 
-    //     if($this->guard()->validate($this->credentials($request))){
-    //         $user=$this->guard()->getLastAttempted();
-    //         if($user->active && $this->attemptLogin($request)){
-    //             return $this->sendLoginResponse($request);
-    //         }
+        if($this->guard()->validate($this->credentials($request))){
+            $user=$this->guard()->getLastAttempted();
+            if($user->active && $this->attemptLogin($request) && $user->package_id != null && $user->endDateSubscripe >= date('Y-m-d')){
+                return $this->sendLoginResponse($request);
+            }
+
+            elseif($user->package_id == null || $user->endDateSubscripe < date('Y-m-d'))
+            {
+                session()->put('userId', $user->email);
+                return redirect('/package');
+            }
             
-    //         else{
-    //             $this->incrementLoginAttempts($request);
-    //             $user->code=SendCode::sendCode($user->phone);
-    //             if($user->save()){
-    //                 return redirect('/verify?phone='.$user->phone);
-    //             }
-    //         }
-    //     }
-    //     //-----------
-    //     $this->incrementLoginAttempts($request);
-    //     return $this->sendFailedLoginResponse($request);
-    // }
+            else{
+                $this->incrementLoginAttempts($request);
+                $user->code=SendCode::sendCode($user->countryCode,$user->phone);
+                if($user->save()){
+                    return redirect('/verify?phone='.$user->phone);
+                }
+            }
+        }
+        //-----------
+        $this->incrementLoginAttempts($request);
+        return $this->sendFailedLoginResponse($request);
+    }
 }

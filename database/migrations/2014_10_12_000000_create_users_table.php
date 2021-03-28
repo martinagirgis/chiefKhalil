@@ -23,20 +23,22 @@ class CreateUsersTable extends Migration
             $table->string('password');
 
             $table->string('phone');
-            $table->string('code');
-            //chick correct code 
+            $table->string('countryCode');
+            $table->string('code')->nullable();
+            //chick correct code  
             $table->boolean('active')->default(0);
 
             $table->rememberToken();
 
-            $table->string('city');
             $table->string('gender');
 
             //Package Type
-            $table->unsignedBigInteger('package_id');
+            $table->unsignedBigInteger('package_id')->nullable();
             $table->foreign('package_id')->references('id')->on('user_packages');
             //Account State Active "1"& disable "0"
             $table->integer('state');
+
+            $table->date('endDateSubscripe')->nullable();
 
             $table->string('image');
 
