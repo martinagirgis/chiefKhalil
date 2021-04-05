@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
-    protected $guard = 'categories';
+    protected $table = 'categories';
 
     protected $fillable = [
         'name_ar',

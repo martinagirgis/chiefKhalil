@@ -12,10 +12,16 @@ class Chief extends Authenticatable
     protected $guard = 'chief';
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'fname','lname','gender','email', 'password','phone','image','gender',
+            'biography_en','biography_ar', 'professionalLife_en','professionalLife_ar', 'instagram', 'twitter', 'facebook'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function chiefSkills()
+    {
+        return $this->hasMany('App\models\ChiefsSkills', 'chief_id');
+    }
 }

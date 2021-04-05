@@ -34,198 +34,66 @@
 				<div class="container">
 					<div class="row">
 
-
+                        @foreach($course as $coursess)
+                            @if(count($coursesFavoriteList)>0)
+                                @for($i = 0; $i < count($coursesFavoriteList); $i++)
+                                
+                                    @if($coursess->id == $coursesFavoriteList[$i]['course_id'])
+                                        <div class="col-xl-4 col-md-6" >
+                                            <div class="item-media">
+                                                <img src="../assets/site/backImages/courses/{{$coursess->image}}" alt="">
+                                                <div class="media-links">
+                                                    <a class="abs-link" href="program-single.html"></a>
+                                                </div>
+                                                <div class="content-absolute bg-maincolor2-transparent text-left ds">
+                                                    <h6>{{$coursess->courseChief['fname']}} {{$coursess->courseChief['lname']}}</h6>
+                                                    <div class="autor half-circle">
+                                                        <img src="../assets/site/backImages/chiefs/{{$coursess->courseChief['image']}}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-content">
+                                                <h5>
+                                                    <a href="program-single.html">{{$coursess->courseCategory['name_en']}}</a>
+                                                </h5>
+                    
+                                                <p>
+                                                    {{$coursess->name_en}}
+                                                </p>
+                    
+                                            </div>
+                                            <div class="program-icon text-center">
+                                                <div>
+                                                    <i class="fa fa-users color-main"></i>
+                                                    {{count($coursess->coursesBooking)}}
+                                                </div>
+                                                <div>
+                                                    <i class="fa fa-heart color-main"></i>
+                                                    {{count($coursess->coursesFavoriteList)}}
+                                                </div>
+                                                <div>
+                                                
+                                                    <a class="love-fill text-center col-2" href="/removeFavoriteCourse/{{$coursess->id}}" style="padding: 15px;">
+                                                        <i class="fa fa fa-heart-o" aria-hidden="true"></i>
+                                                    </a>
+                                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @break
+                                    @endif
+                                @endfor
+                            @endif
+                        @endforeach
 						
-								<div class="col-xl-4 col-md-6 classes kitchen" >
+                    </div>		
+                </div>
+						{{-- <div class="d-none d-lg-block divider-60"></div> --}}
+					{{-- </div>
 
-									<div class="vertical-item text-center padding-top">
-										<div class="item-media">
-											<img style="height: 400px;" src="../assets/site/images/gallery/01.jpg" alt="">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" title="" href="images/gallery/01.jpg"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content">
-											<div class="small-text tag color-main">
-												<a href="#">classes</a>
-											</div>
-											<h5>
-												<a href="gallery-single.html">Lorem ipsum dolor sit</a>
-											</h5>
-										</div>
-                                        <br>
-                                        <div class="row nav-btn">
-                                            <div class="col-9 text-center">
-                                                <a href="#" class="btn btn-maincolor">View Details</a>
-                                            </div>
-                                            <button class="love-fill text-center col-2" type="submit">
-                                                <i class="fa fa fa-heart-o" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-									</div>
+				</div> --}}
+</section>
 
-								</div>
-
-								<div class="col-xl-4 col-md-6 details recipes" >
-									<div class="vertical-item text-center padding-top">
-										<div class="item-media">
-											<img style="height: 400px;" src="../assets/site/images/gallery/02.jpg" alt="">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" title="" href="images/gallery/02.jpg"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content">
-											<div class="small-text tag color-main2">
-												<a href="#">recipes</a>
-											</div>
-											<h5>
-												<a href="gallery-single.html">Amet consetetur sadipscing</a>
-											</h5>
-										</div>
-                                        <br>
-                                        <div class="row nav-btn">
-                                            <div class="col-9 text-center">
-                                                <a href="#" class="btn btn-maincolor">View Details</a>
-                                            </div>
-                                            <button class="love-fill text-center col-2" type="submit">
-                                                <i class="fa fa fa-heart-o" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-									</div>
-								</div>
-
-								<div class="col-xl-4 col-md-6 classes cook">
-									<div class="vertical-item text-center padding-top">
-										<div class="item-media">
-											<img style="height: 400px;" src="../assets/site/images/gallery/04.jpg" alt="">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" title="" href="images/gallery/04.jpg"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content">
-											<div class="small-text tag color-main2">
-												<a href="#">details</a>
-											</div>
-											<h5>
-												<a href="gallery-single.html">Tempor invidunt ut</a>
-											</h5>
-										</div>
-                                        <br>
-                                        <div class="row nav-btn">
-                                            <div class="col-9 text-center">
-                                                <a href="#" class="btn btn-maincolor">View Details</a>
-                                            </div>
-                                            <button class="love-fill text-center col-2" type="submit">
-                                                <i class="fa fa fa-heart-o" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-									</div>
-								</div>
-
-								<div class="col-xl-4 col-md-6 classes kitchen details" >
-									<div class="vertical-item text-center padding-top">
-										<div class="item-media">
-											<img style="height: 400px;" src="../assets/site/images/gallery/07.jpg" alt="">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" title="" href="images/gallery/07.jpg"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content">
-											<div class="small-text tag color-main">
-												<a href="#">details</a>
-											</div>
-											<h5>
-												<a href="gallery-single.html">Voluptua vero</a>
-											</h5>
-										</div>
-                                        <br>
-                                        <div class="row nav-btn">
-                                            <div class="col-9 text-center">
-                                                <a href="#" class="btn btn-maincolor">View Details</a>
-                                            </div>
-                                            <button class="love-fill text-center col-2" type="submit">
-                                                <i class="fa fa fa-heart-o" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-									</div>
-								</div>
-
-								<div class="col-xl-4 col-md-6 classes cook recipes" >
-									<div class="vertical-item text-center padding-top">
-										<div class="item-media" >
-											<img style="height: 400px;" src="../assets/site/images/gallery/08.jpg" alt="">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" title="" href="images/gallery/08.jpg"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content">
-											<div class="small-text tag color-main2">
-												<a href="#">classes</a>
-											</div>
-											<h5>
-												<a href="gallery-single.html">Eos et accusam justo duo</a>
-											</h5>
-										</div>
-                                        <br>
-                                        <div class="row nav-btn">
-                                            <div class="col-9 text-center">
-                                                <a href="#" class="btn btn-maincolor">View Details</a>
-                                            </div>
-                                            <button class="love-fill text-center col-2" type="submit">
-                                                <i class="fa fa fa-heart-o" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-									</div>
-								</div>
-
-                                <div class="col-xl-4 col-md-6 classes cook recipes" >
-									<div class="vertical-item text-center padding-top">
-										<div class="item-media" >
-											<img style="height: 400px;" src="../assets/site/images/gallery/08.jpg" alt="">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" title="" href="images/gallery/08.jpg"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content">
-											<div class="small-text tag color-main2">
-												<a href="#">classes</a>
-											</div>
-											<h5>
-												<a href="gallery-single.html">Eos et accusam justo duo</a>
-											</h5>
-										</div>
-                                        <br>
-                                        <div class="row nav-btn">
-                                            <div class="col-9 text-center">
-                                                <a href="#" class="btn btn-maincolor">View Details</a>
-                                            </div>
-                                            <button class="love-fill text-center col-2" type="submit">
-                                                <i class="fa fa fa-heart-o" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-									</div>
-								</div>
-
-						
-
-
-						<div class="d-none d-lg-block divider-60"></div>
-					</div>
-
-				</div>
-			</section>
 
 @elseif (    LaravelLocalization::getCurrentLocaleName() == 'Arabic')
 

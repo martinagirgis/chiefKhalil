@@ -33,6 +33,13 @@
 <section class="ls s-py-75 s-pylg-100 c-gutter-60 container-px-30 contacts">
     <div class="container">
         <div class="row">
+            
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
 
             <div class="divider-55 d-none d-xl-block"></div>
 
@@ -42,84 +49,70 @@
                     <h3>Contact Us</h3>
                 </div>
                 <div class="divider-25"></div>
-                <div class="contact-form c-mb-20 c-gutter-20">
-
-                    <div class="row">
-
-                        <div class="col-sm-6">
-                            <div class="form-group has-placeholder text-right">
-                                <label for="contact-name">Full Name
-                                    <span class="required">*</span>
-                                </label>
-                                <span class="fa fa-user color-main"></span>
-                                <input type="text" aria-required="true" size="30" value="" name="name"
-                                    id="contact-name" class="form-control color-main" placeholder="Full Name" >
+                <div class=" c-mb-20 c-gutter-20">
+                    <form class="" method="post" action="{{ route('sendMailCotactUs') }}">
+                        @csrf 
+                        <div class="row">
+                            
+                            <div class="col-sm-12">
+                                <div class="form-group has-placeholder text-right">
+                                    <label for="contact-name">Full Name
+                                        <span class="required">*</span>
+                                    </label>
+                                    <span class="fa fa-user color-main"></span>
+                                    <input type="text" aria-required="true" size="30" value="" name="name"
+                                        id="contact-name" class="form-control color-main" placeholder="Full Name" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-6">
-                            <div class="form-group has-placeholder text-right">
-                                <label for="contact-email">Email
-                                    <span class="required">*</span>
-                                </label>
-                                <i class="fa fa-envelope color-main"></i>
-                                <input type="email" aria-required="true" size="30" value="" name="email"
-                                    id="contact-email" class="form-control" placeholder="Email">
+                            <div class="col-sm-12">
+                                <div class="form-group has-placeholder text-right">
+                                    <label for="contact-email">Email
+                                        <span class="required">*</span>
+                                    </label>
+                                    <i class="fa fa-envelope color-main"></i>
+                                    <input type="email" aria-required="true" size="30" value="" name="email"
+                                        id="contact-email" class="form-control" placeholder="Email" required>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group has-placeholder text-right">
-                                <label for="contact-phone">Phone Number
-                                    <span class="required">*</span>
-                                </label>
-                                <i class="fa fa-phone color-main"></i>
-                                <input type="text" aria-required="true" size="30" value="" name="phone"
-                                    id="contact-phone" class="form-control" placeholder="Phone Number">
+
+                            <div class="col-sm-12">
+                                <div class="form-group has-placeholder">
+                                    <label for="contact-subject">Subject</label>
+                                    <i class="fa fa-pencil color-main" style="color: white;"></i>
+                                    <select class="form-control" name="subject" required>
+                                        @foreach($contactMails as $contactMail)
+                                            <option value="{{$contactMail->email}}">{{$contactMail->subject_en}}</option>
+                                        @endforeach
+                                       
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group has-placeholder text-right">
-                                <label for="contact-subject">Subject</label>
-                                <i class="fa fa-pencil color-main" style="color: white;"></i>
-                                <select class="form-control" id="contact-subject">
-                                    <option selected="">Subject</option>
-                                    <option value="Support@chefkhalil-school.edu.sa">Student Support</option>
-                                    <option value="Press@chefkhalil-school.edu.sa">Media Inquiries</option>
-                                    <option value="sponsorship@chefkhalil-school.edu.sa">Sponsor Inquiries</option>
-                                </select>
+
+                            <div class="col-sm-12">
+
+                                <div class="form-group has-placeholder text-right">
+                                    <label for="contact-message">Message</label>
+                                    <i class="fa fa-pencil color-main"></i>
+                                    <textarea aria-required="true" rows="6" cols="45" name="message"
+                                        id="contact-message" class="form-control" placeholder="Message..." required></textarea>
+                                </div>
                             </div>
+
                         </div>
+                        <div class="divider-10"></div>
+                        <div class="row">
 
-                    </div>
+                            <div class="col-sm-12 text-center">
 
-                    <div class="row">
-
-                        <div class="col-sm-12">
-
-                            <div class="form-group has-placeholder text-right">
-                                <label for="contact-message">Message</label>
-                                <i class="fa fa-pencil color-main"></i>
-                                <textarea aria-required="true" rows="6" cols="45" name="message"
-                                    id="contact-message" class="form-control" placeholder="Message..."></textarea>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-maincolor">Send
+                                    </button>
+                                </div>
                             </div>
+
                         </div>
-
-                    </div>
-                    <div class="divider-10"></div>
-                    <div class="row">
-
-                        <div class="col-sm-12 text-center">
-
-                            <div class="form-group">
-                                <button type="submit" id="contact_form_submit" name="contact_submit"
-                                    class="btn btn-maincolor" onclick="sendMail()">Send
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
+                    </form>
 
                 </div>
             </div>

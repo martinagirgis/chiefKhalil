@@ -29,6 +29,8 @@ class CreateCoursesTable extends Migration
             $table->unsignedBigInteger('chief_id');
             $table->foreign('chief_id')->references('id')->on('chiefs');
 
+            $table->text('image');
+            
             $table->timestamps();
         });
     }

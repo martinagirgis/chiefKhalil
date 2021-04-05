@@ -17,16 +17,18 @@ class CreateChiefsTable extends Migration
             $table->id();
             $table->string('fname');
             $table->string('lname');
-            $table->string('city');
             $table->string('gender');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
-            $table->string('image');
-
-            $table->string('facebock')->nullable();
-            $table->string('twitter')->nullable();
+            $table->text('image');
+            $table->text('biography_en')->nullable();
+            $table->text('biography_ar')->nullable();
+            $table->text('professionalLife_en')->nullable();
+            $table->text('professionalLife_ar')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('facebook')->nullable();
 
             $table->timestamps();
         });

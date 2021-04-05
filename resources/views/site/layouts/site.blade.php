@@ -14,7 +14,7 @@
 	<![endif]-->
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	{{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	
 	<link rel="stylesheet" href="{{asset('assets/site/css/bootstrap.min.css')}}">
@@ -23,6 +23,10 @@
 	<link rel="stylesheet" href="{{asset('assets/site/css/main.css')}}" class="color-switcher-link">
 	<link rel="stylesheet" href="{{asset('assets/site/css/shop.css')}}" class="color-switcher-link">
 	
+	<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6063a4476f7ab900129cec66&product=inline-share-buttons" async="async"></script>
+	{{-- <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
+	
+
 </head>
 
 <body>

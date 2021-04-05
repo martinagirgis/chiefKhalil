@@ -119,9 +119,9 @@
                                     <button type="submit" class="woocommerce-Button button">إرسال </button>
                                 </p>
 
-                                <p class="woocommerce-LostPassword lost_password">
+                                {{-- <p class="woocommerce-LostPassword lost_password">
                                     <a href="login.html">تسجيل دخول</a>
-                                </p>
+                                </p> --}}
 
                             </form>
 

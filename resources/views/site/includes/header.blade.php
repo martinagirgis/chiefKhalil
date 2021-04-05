@@ -3,70 +3,97 @@
 <header class="page_header ls justify-nav-center" >
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="col-xl-2 col-lg-3 col-11">
+            <div class="col-xl-1 col-lg-1 col-9">
                 <a href="./" class="logo">
                     <img src="../../assets/site/images/logo.png" alt="">
                     <strong class="color-main logo-dot">.</strong>
                     </span>
                 </a>
             </div>
-            <div class="col-xl-8 col-lg-5 col-1 text-sm-center">
+            <div class="col-xl-8 col-lg-4 col-1 text-sm-center">
                 <!-- main nav start -->
                 <nav class="top-nav">
                     <ul class="nav sf-menu">
 
-                        <li>
-                            <a href="index.html">Home Page</a>
+                        <li class="active">
+                            <a href="/">Home</a>
                         </li>
 
                         <li>
-                            <a href="about.html">About Us</a>
+                            <a href="{{route('showCourses')}}">Courses</a>
                         </li>
 
-                        <li> 
-                            <a href="courses.html">Courses</a>
-                        </li>
-
-                        <!-- Team -->
                         <li>
-                            <a href="chiefs.html">Cheif's Team</a>
+                            <a href="{{route('showChiefs')}}">Chiefs</a>
                         </li>
-                        <!-- eof team -->
 
-
-                        <!-- live -->
-                        <li>
-                            <a href="live_feed.html">Live</a>	
-                        </li>
-                        <!-- eof live -->
-
-                        <!-- contacts -->
-                        <li>
-                            <a href="contact-us.html">Contact Us</a>
-                        </li>
-                        <!-- eof contacts -->
-                        
-                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <li >
-                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                    {{ $properties['native'] }}
-                                </a>
+                        <li><a href="{{route('about')}}">About Us</a></li>
+                            <li><a href="{{route('showCotactUs')}}">Contact Us</a></li>
+                            
+                            
+                            @if(!Auth::guard('web')->user() && !Auth::guard('chief')->user() && !Auth::guard('admin')->user())
+                            
+                            <li>
+                                <a href=""><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                                 Sign In</a>
+                                    <ul>
+                                        <li><a href="/login">Student</a></li>
+                                        <li><a href="{{route('chief.login')}}">Chief</a></li>
+                                        <li><a href="{{route('admin.login')}}">Admin</a></li>
+                                    </ul>
                             </li>
-                        @endforeach
+
+                            <li>
+                                <a href=""><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                                 Sign Up</a>
+                                    <ul>
+                                        <li><a href="/register">Student</a></li>
+                                        <li><a href="{{route('chief.register')}}">Chief</a></li>
+                                    </ul>
+                            </li>
+                            @endif
+
+                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <li>
+                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                        {{ $properties['native'] }}
+                                    </a>
+                                </li>
+                            @endforeach
 
                     </ul>
                 </nav>
                 <!-- eof main nav -->
                 <!-- eof main nav -->
             </div>
-            <div id="btnGuestList" class="dropdown" style="display: block;">
-                <button class="btn btn-maincolor2 dropdown-toggle" type="button" data-toggle="dropdown" style="font-size: large;">Welcome <i class="fa fa-user ml-1 mr-1" aria-hidden="true"></i>
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu bg-dark" style="text-align: left;">
-                  <li class="mb-3"><a href="#">Join US</a></li>
-                  <li><a href="login.html">Log In</a></li>
-                </ul>
-              </div>
+            @if(Auth::guard('web')->user())
+                    
+                <div class="col-xl-2 col-lg-6 col-sm-2 col-2 text-left text-xl-right d-none d-lg-block">
+                    <div id="" class="dropdown" >
+                        <button class="btn btn-maincolor2 dropdown-toggle" type="button"
+                            data-toggle="dropdown" style="font-size: large;"><i class="fa fa-user"
+                                aria-hidden="true"></i> {{Auth::guard('web')->user()->fname}} {{Auth::guard('web')->user()->lname }}
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu bg-dark" style="text-align: left; width:250px">
+                            <li class="mb-2"><a href="{{route('myProfile')}}">My profile</a></li>
+                            <li class="mb-2"><a href="{{route('myCourses')}}">My Courses</a></li>
+                            <li class="mb-2"><a href="{{route('myFavoriteCourse')}}">Favorite Course</a></li>
+                            <li class="mb-2"><a href="{{route('myFollowingChieff')}}">Following Chiefs</a></li>
+                            <li class="mb-2"><a href="/editProfileInfo">Update Profile</a></li>
+                            <li class="mb-2"><a href="/editProfileAccount">Chage Password</a></li>
+                            <li class="mb-2"><a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                 Log Out
+                             </a>
+
+                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                 @csrf
+                             </form></li>
+                        </ul>
+                    </div>
+                </div>
+                @endif
         </div>
     </div>
     <!-- header toggler -->

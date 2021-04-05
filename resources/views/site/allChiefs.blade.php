@@ -35,26 +35,68 @@
 		<div id="chiefsList" class="row">
 
 			<div class="d-none d-lg-block divider-60"></div>
+			
+			@foreach($chief as $chieff)
 			<div class="col-md-6 col-lg-4">
+                    <div class="vertical-item content-absolute content-hover text-center">
+                        <div class="item-media">
+                            <img src="../assets/site/backImages/chiefs/{{$chieff->image}}" alt="" style="height: 400px">
+                        </div>
+                        <div class="item-content bg-maincolor-transparent">
+                            <h4>
+                                <a class="dark" href="/en/showChiefDetails/{{$chieff->id}}">{{$chieff->fname}} {{$chieff->lname}}</a>
+                            </h4>
+                           
+                            <div class="content-body">
 
-				<div class="vertical-item content-absolute text-center">
-					<div class="item-media">
-						<img src="../assets/site/images/team/02.jpg" alt="">
-						<div class="media-links">
-							<a class="abs-link" title="" href="chief-single.html"></a>
-						</div>
-					</div>
-					<div class="item-content bg-maincolor-transparent">
-						<h4>
-							<a class="dark" href="chief-single.html">Herbert Webster</a>
-						</h4>
+                                <p class="social-icons">
+                                    <a href="https://{{$chieff->facebook}}" class="fa fa-facebook color-light" title="facebook"></a>
+                                    <a href="https://{{$chieff->twitter}}" class="fa fa-twitter color-light" title="twitter"></a>
+                                    <a href="https://{{$chieff->instagram}}" class="fa fa-google-plus color-light" title="google"></a>
+                                </p>
+                                <div class="team-button">
+                                    <a href="/en/showChiefDetails/{{$chieff->id}}" class="btn btn-team">view profile</a>
+                                    @if(Auth::guard('web')->user())
+                                    @if(count($followingChiefList)>0)
+                                        @for($i = 0; $i < count($followingChiefList); $i++)
+                                        
+                                            @if($chieff->id == $followingChiefList[$i]['chief_id'])
+                                                <a class="love-fill text-center col-2" href="/unFollowingChieff/{{$chieff->id}}" style="padding: 15px;">
+                                                    <i class="fa fa fa-heart-o" aria-hidden="true"></i>
+                                                </a>
+                                                @break
 
-						<h6 class="small-text">
-							Master Chef
-						</h6>
-					</div>
+                                            @elseif($i == count($followingChiefList)-1 )
+                                                <a class="love text-center col-2" href="/followingChieff/{{$chieff->id}}" style="padding: 15px; color:#82b440">
+                                                    <i class="fa fa fa-heart" aria-hidden="true"></i>
+                                                </a>
+                                                @break
+
+                                            @endif
+                                            
+                                        @endfor
+                                        
+                                    @else
+                                        <a class="love text-center col-2" href="/followingChieff/{{$chieff->id}}" style="padding: 15px; color:#82b440">
+                                            <i class="fa fa fa-heart" aria-hidden="true"></i>
+                                        </a>
+                                    @endif
+                           
+                                @endif
+                                   
+                                @if(!Auth::guard('web')->user())
+                                    <a class="love text-center col-2" href="/login" style="padding: 15px; color:#82b440" >
+                                        <i class="fa fa fa-heart" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</div>
-			</div>
+                    @endforeach
+			
 
 			<div class="d-none d-lg-block divider-30"></div>
 

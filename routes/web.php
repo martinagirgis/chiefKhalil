@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Martina;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/getResult', 'Martina\IndexController@getResult')->name('getResult');
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
 
-        Route::get('/', function () {
-            return view('welcome');
-        });
+        Route::get('/', 'Martina\IndexController@index')->name('index');
 
         Route::get('/test', function () {
-            return view('site.courseDetails');
+            return view('site.layouts.mmm');
         });
+
+        Route::get('/about', function () {
+            return view('site.aboutUs');
+        })->name('about');
+
+        Route::get('/showContact', function () {
+            return view('site.contact');
+        })->name('show_contact');
 
         Auth::routes();
 
@@ -40,11 +49,63 @@ Route::group(
         Route::any('/addPackage','Auth\VerifyController@addPackage');
         
         // profile
-        Route::any('/profile','HomeController@profile');
+        Route::any('/profile','HomeController@profile')->name('myProfile');
         Route::any('/editProfileInfo','HomeController@edit');
         Route::any('/updateProfileInfo', 'HomeController@update')->name('updateProfile');
         Route::any('/editProfileAccount','HomeController@editAccount');
         Route::any('/updateProfileAccount', 'HomeController@updateAccount')->name('updateAccount');
+
+        // all chiefs 
+        Route::get('/showChiefs', 'Martina\IndexController@showChiefs')->name('showChiefs');
+
+        // all courses 
+        Route::get('/showCourses', 'Martina\IndexController@showCourses')->name('showCourses');
+
+        // add course to favorite
+        Route::get('/addFavoriteCourse/{id}', 'Martina\IndexController@addFavoriteCourse')->name('addFavoriteCourse');
+
+        // remove course to favorite
+        Route::get('/removeFavoriteCourse/{id}', 'Martina\IndexController@removeFavoriteCourse')->name('removeFavoriteCourse');
+
+        // following chief
+        Route::get('/followingChieff/{id}', 'Martina\IndexController@followingChieff')->name('followingChieff');
+
+        // unfollowing chief
+        Route::get('/unFollowingChieff/{id}', 'Martina\IndexController@unFollowingChieff')->name('unFollowingChieff');
+
+        // my courses to favorite
+        Route::get('/myFavoriteCourse', 'Martina\IndexController@myFavoriteCourse')->name('myFavoriteCourse');
+
+        // my following chiefs
+        Route::get('/myFollowingChieff', 'Martina\IndexController@myFollowingChieff')->name('myFollowingChieff');
+
+        // my courses
+        Route::get('/myCourses', 'Martina\IndexController@myCourses')->name('myCourses');
+
+        // Cief Details
+        Route::get('/showChiefDetails/{id}', 'Martina\IndexController@showChiefDetails')->name('showChiefDetails');
+
+        // Course Details
+        Route::get('/showCourseDetails/{id}', 'Martina\IndexController@showCourseDetails')->name('showCourseDetails');
+
+        // send mail to chief
+        Route::any('/sendMailChief/{id}', 'Martina\IndexController@sendMailChief')->name('sendMailChief');
+
+        // show cotact us
+        Route::any('/showCotactUs', 'Martina\IndexController@showCotactUs')->name('showCotactUs');
+
+        // send mail in cotact us
+        Route::any('/sendMailCotactUs', 'Martina\IndexController@sendMailCotactUs')->name('sendMailCotactUs');
+
+        // show lessons of courses
+        Route::any('/courseLessonses/{id}/{lessonNum}', 'Martina\IndexController@courseLessonses')->name('courseLessonses');
+
+        // Enroll Course
+        Route::any('enrollCourse/{id}', 'Martina\IndexController@enrollCourse')->name('enrollCourse');
+
+        // get Result 
+        // Route::any('getResult/{quizId}', 'Martina\IndexController@getResult')->name('getResult');
+        // Route::post('/getResult', 'Martina\IndexController@getResult')->name('getResult');
 
 
         // chief routes
