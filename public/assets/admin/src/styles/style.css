@@ -1334,6 +1334,54 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, tabl
 	display: block;
 	height: auto;
 }
+/*Ar*/
+.right-side-bar{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 1000;
+    background: #0b132b;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.right-side-bar .mCS-dark-2.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+    background: #ecf0f4;
+}
+.right-side-bar:before{
+    content: "";
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    display: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.right-side-bar.open{
+    right: 0;
+}
+.right-side-bar .menu-block{
+    height: calc(100vh - 70px);
+}
+.right-side-bar .close-sidebar{
+    font-size: 18px;
+    color: #888888;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    display: none;
+}
+
 .left-side-bar{
 	position: fixed;
 	left: 0;
@@ -3846,6 +3894,7 @@ body.IE .register-page-wrap .container{
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
+
 .right-sidebar-visible{
 	right: 0;
 }

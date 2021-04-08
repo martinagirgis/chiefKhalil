@@ -25,9 +25,11 @@ class CreateCoursesLessonsQuizTable extends Migration
 
             $table->double('total_score');
 
-            $table->unsignedBigInteger('courses_media_id');
-            $table->foreign('courses_media_id')->references('id')->on('courses_media');
+            $table->text('image');
 
+
+            $table->unsignedBigInteger('courses_lessons_id');
+            $table->foreign('courses_lessons_id')->references('id')->on('courses_lessons');
 
             $table->timestamps();
         });

@@ -21,7 +21,8 @@ class CreateCoursesLessonsTable extends Migration
             $table->string('details_ar');
             $table->string('details_en');
 
-            $table->integer('number_of_videos');
+            $table->text('image');
+            $table->text('video');
 
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');

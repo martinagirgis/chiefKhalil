@@ -16,7 +16,9 @@ class CreateChiefsSkillsTable extends Migration
         Schema::create('chiefs_skills', function (Blueprint $table) {
             $table->id();
 
-            $table->string('skill');
+            $table->string('skill_en');
+            $table->string('skill_ar');
+
             $table->double('percentage');
 
             $table->unsignedBigInteger('chief_id');

@@ -7,7 +7,8 @@
 	.header{width: calc(100% - 250px);}
 	.brand-logo{width: 250px;}
 	.left-side-bar{width: 250px;}
-	.main-container{padding-left: 270px;}
+    .right-side-bar{width: 250px;}
+    .main-container{padding-left: 270px;}
 }
 @media (min-width: 1200px) and (max-width: 1400px){
 	.device-usage-chart .width-50-p{width: 100%;}
@@ -16,6 +17,15 @@
 	.main-container{padding-left: 0; padding-right: 0;}
 	.header-left .menu-icon{display: flex;}
 	.header{width: 100%;}
+
+    .right-side-bar{right: -281px;}
+    .right-side-bar .close-sidebar{display: block;}
+    .right-side-bar:before{display: block; opacity: 0; visibility: hidden;}
+    .right-side-bar.open:before{opacity: 1; visibility: visible; display: none;}
+    .right-side-bar .brand-logo a{text-align: right; padding: 5px 15px;}
+    .right-side-bar .brand-logo a img, .left-side-bar .brand-logo a .svg{margin: 0;}
+
+
 	.left-side-bar{left: -281px;}
 	.left-side-bar .close-sidebar{display: block;}
 	.left-side-bar:before{display: block; opacity: 0; visibility: hidden;}

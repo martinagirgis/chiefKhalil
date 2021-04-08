@@ -25,7 +25,11 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->rememberToken();
 
-            $table->string('city');
+            $table->string('countryCode');
+            $table->string('code')->nullable();
+            //chick correct code
+            $table->boolean('active')->default(0);
+
             $table->string('gender');
 
             //Package Type
@@ -34,9 +38,13 @@ class CreateUsersTable extends Migration
             //Account State Active "1"& disable "0"
             $table->integer('state');
 
+            $table->date('endDateSubscripe')->nullable();
+
             $table->string('image');
 
             $table->timestamps();
+            //Stream Sad Try
+            $table->enum('user_type', ['Student', 'Teacher']);
         });
     }
 

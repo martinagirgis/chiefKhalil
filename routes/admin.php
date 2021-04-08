@@ -24,18 +24,56 @@ Route::group(
         Route::post('reset-password/{token}', 'Auth\AdminForgotPasswordController@resetPassword')->name('admin.password.update');
 
         Route::group(['namespace'=>'Users\Admin\Dashboard'],function(){
-            Route::resource('categories','CategoriesController');
+            Route::resource('packages','PackagesController');//Done
+            Route::get('/package/features/get/{package_id}','PackagesController@getFeature')->name('feature.get');
+            Route::post('/package/features/add','PackagesController@addFeature')->name('feature.add');
+            Route::get('/package/features/remove/{id}','PackagesController@removeFeature')->name('feature.remove');
+            Route::post('/package/features/change/number','PackagesController@chnageFeature')->name('feature.change');
+
+
+            Route::resource('admins','AdminsController');
+            Route::resource('users','UsersController');
+            Route::post('users/state','UsersController@AcceptOrRefuse')->name('users.state');
+            Route::post('users/ban','UsersController@BanUser')->name('users.ban');
+
             Route::resource('chiefs','ChiefsController');
+            Route::resource('categories','CategoriesController');
             Route::resource('courses','CoursesController');
+            Route::resource('lessons','lessonsController',['except'=>['index,create']]);
+            Route::get('/course/lessons/{course_id}', 'LessonsController@index')->name('lessons.index');
+            Route::get('/course/lessons/create/{course_id}', 'LessonsController@create')->name('lessons.create');
             Route::resource('users','UsersController');
             Route::resource('live','LivesController');
         });
+    });
 
+
+    Route::prefix('chief')->group(function() {
+        //Chief Home Page
+        Route::get('/', 'Users\Chief\ChiefController@index')->name('chief.dashboard');
+
+        Route::group(['namespace'=>'Users\Chief\Dashboard'],function(){
+            //Sections Routes.
+            Route::resource('courses','CoursesController');
+
+        });
     });
 
 
 
-});
+    });
 Route::get('live',function(){
     return view('admin.sections.liveStream.index');
-});
+})->name('stream.create');
+
+
+
+Route::post('/create_class', 'Stream\SessionsController@createClass')
+    ->name('create_class');
+
+// This route is used by both teachers and students to join a class
+
+Route::get('/classroom/{id}', 'Stream\SessionsController@showClassRoom')
+    ->where('id', '[0-9]+')
+    ->name('classroom');
+Route::get('/yamshl','Stream\SessionsController@Test');

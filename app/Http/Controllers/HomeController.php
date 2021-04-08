@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\models\admin\VirtualClass;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +22,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
+    {
+        $user = $request->user();
+        $classes = [];
+
+        // If user is a student, give her a list of virtual classes
+
+        if ($user->user_type === 'Student') {
+            $classes = VirtualClass::orderBy('name', 'asc')->get();
+        }
+
+        return view('home', compact('user', 'classes'));
+    }
+
+
+  /*Test Stream
+   *   public function index()
     {
         return view('home');
-    }
+    }*/
 }

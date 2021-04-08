@@ -24,14 +24,10 @@
 
 @if( LaravelLocalization::getCurrentLocaleName() == "English")
 @section('main-container')
-    <input class=" p-2" type="text" id="myInput" onKeyUp="myFunction()" placeholder="Search .. ">
-    <div class="table-responsive"  style="overflow-y:scroll">
-        <table id="myTable" class="table table-striped table-bordered table-sm table-responsive"  style="width:100%;" style="text-align:center;layout:auto">
+    <div class="table-responsive"  style="overflow-y:scroll;">
+        <table id="myTable" class="table table-striped table-bordered table-sm table-responsive"  style="width:auto;" style="text-align:center;layout:auto">
             <thead>
             <tr>
-                <th>
-                    Number
-                </th>
                 <th>
                     Image
                 </th>
@@ -65,50 +61,57 @@
             </tr>
             </thead>
             <tbody>
-            <?php $i = 0?>
             @foreach($categories as $category)
-                <tr style="text-align:left">
-                    <?php $i++ ?>
-                    <td>{{$i}}</td>
-                     <td>
+                <tr style="text-align:center">
+                    <td>
                          <img src="{{asset('assets/images/courses/'.$category->image.'')}}" alt="" style="width:70px;height:70px">
                      </td>
                     <td>{{$category->name_ar}}</td>
                     <td>{{$category->name_en}}</td>
                     <td>
-                        {{$category->details_ar}}</td>
+                        {{$category->details_ar}}
+                    </td>
                     <td>{{$category->details_en}}</td>
-                    <td>{{$category->number_of_lessons}}</td>
+                    <td>
+                        {{$category->number_of_lessons}}
+                        <br><br>
+                        <a class="btn btn-dark" href="{{route('lessons.create',['course_id'=>$category->id])}}">Show</a>
+                    </td>
+
+
                     <td>{{$category->category_id}}</td>
                     <td>{{$category->chief_id}}</td>
 
-                        <td colspan="3">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <a class="btn btn-dark" style="width:100%" href="{{route('chiefs.show',['chief'=>$category->id])}}">Show</a>
-                            </div>
-                            <div class="col-sm-4">
-                                <a class="btn btn-primary" style="width:100%" href="{{route('chiefs.edit',['chief'=>$category->id])}}">Edit</a>
-                            </div>
-                            <div class="col-sm-4">
-                                <form method="post" action="{{route('chiefs.destroy',['chief'=>$category->id])}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" style="width:100%" >Delete</button>
-                                </form>
+                    <td colspan="3" class="col-sm-12">
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Controllers
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="btn btn-dark col-sm-12" href="{{route('chiefs.show',['chief'=>$category->id])}}">Show</a>
+                                    <a class="btn btn-primary col-sm-12"  href="{{route('chiefs.edit',['chief'=>$category->id])}}">Edit</a>
+                                    <form method="post" action="{{route('chiefs.destroy',['chief'=>$category->id])}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger col-sm-12" >Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </td>
 
+                     </td>
                 </tr>
             @endforeach
 
             <tfoot>
             <tr>
-                <th colspan="9">
+                <th colspan="11">
                     <center>
                         <br>
-                        <a href="{{route('chiefs.create')}}" class="btn btn-dark ">Add New Chief</a>
+                        <a href="{{route('chiefs.create')}}" class="btn btn-dark ">Add New Course</a>
 
                     </center>
                 </th>
@@ -123,7 +126,7 @@
     <div style="text-align:right;direction:rtl">
         <input class=" p-2" type="text" id="myInput" onKeyUp="myFunction()" placeholder="بحث ..">
         <div class="table-responsive"  style="overflow-y:scroll">
-            <table id="myTable" class="table table-striped table-bordered table-sm"  style="width:100%;" style="text-align:center">
+            <table id="myTable" class="table table-striped table-bordered table-sm"   style="text-align:center">
                 <thead>
                 <tr>
                     <th class="th-sm">
@@ -164,23 +167,22 @@
                         <td>{{$category->description_ar}}</td>
                         <td>{{$category->description_en}}</td>
                         <td colspan="3">
-                            <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <form action="">
                                         <button class="btn btn-dark" style="width:100%">عرض</button>
                                     </form>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <form action="">
                                         <button class="btn btn-primary" style="width:100%">تعديل</button>
                                     </form>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <form action="">
                                         <button class="btn btn-danger" style="width:100%">حذف</button>
                                     </form>
                                 </div>
-                            </div>
+
 
                         </td>
 

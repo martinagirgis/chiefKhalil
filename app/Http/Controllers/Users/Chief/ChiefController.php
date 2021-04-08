@@ -9,11 +9,11 @@ class ChiefController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:chief');
+        //$this->middleware('auth:chief');
     }
 
     public function index()
     {
-        return view('chief');
+        return view('chief.dashboard');
     }
 }

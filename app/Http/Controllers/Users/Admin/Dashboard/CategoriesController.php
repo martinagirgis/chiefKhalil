@@ -93,6 +93,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
+
         return view('admin.sections.categories.edit',compact('category'));
     }
 

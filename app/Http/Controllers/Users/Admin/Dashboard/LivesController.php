@@ -24,7 +24,7 @@ class LivesController extends Controller
      */
     public function create()
     {
-        return view('admin.sections.liveStream.create');
+        return view('admin.sections.liveStream.new.create');
     }
 
     /**

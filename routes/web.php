@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,4 +46,11 @@ Route::group(
 
 
     });
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/testsad', function (Request $request) {
+    $sad = $request->Arr1['answer0'];
+    return $sad;
+});

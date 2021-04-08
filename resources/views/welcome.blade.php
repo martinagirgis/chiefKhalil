@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
 
@@ -62,6 +63,8 @@
                 margin-bottom: 30px;
             }
         </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -93,8 +96,53 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="">{{__('chief.test')}}</a>
                 </div>
+
+                <input type="hidden" id="userId" value="anyThing">
+                <input type="hidden" id="quizId" value="quizId">
+
+                <button id="sad">
+                    sad
+                </button>
+                <div id="empty">
+
+                </div>
+                {{ __('footer.mobile') }}
+
             </div>
         </div>
+        <script>
+
+            $(document).ready(function(){
+                $('#sad').click(function(){
+                    //var unievrsity = $(this).val();
+                    var userId =  document.getElementById('userId').value;
+                    var quizId = document.getElementById('quizId').value;
+
+
+                    var arr =  {"sad" : "John", "sad1" : "Volvo" , "sad2" : "BMW" };
+
+                    var arr1 = {};
+                    arr1['answer0'] = 'sad0';
+                    arr1['answer1'] = 'sad1';
+                    arr1['answer2'] = 'sad2';
+
+                    $.ajax({
+                        url:'http://127.0.0.1:8000/testsad',
+                        method:"post",
+                        data:{UserId:userId,QuizId:quizId,Arr:arr,Arr1:arr1},
+                        dataType:"text",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success:function(data){
+                            $('#empty').html(data);
+                            alert(data);
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
 </html>
