@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+    <title>Document</title>
+    <script>
+       async function generateCertficate(){
+            const { PDFDocument, StandardFonts, rgb, degrees } = PDFLib;
+            // Create a new PDFDocument
+            const pdfDoc = await PDFDocument.create()
+            pdfDoc.registerFontkit(fontkit)
+            // Embed the Times Roman font
+            // const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+            const url = 'http://127.0.0.1:8000/en/myCourses/Tajawal-Light.ttf';
+            const fontBytes = await fetch(url).then(res => res.arrayBuffer())   
+            const font = await pdfDoc.embedFont(fontBytes)
+
+                // pdfDoc.setAuthor(this.pdfInfo.author);
+                // pdfDoc.setTitle(this.pdfInfo.title);
+                // pdfDoc.setKeywords(this.pdfInfo.keywords.split(","));
+            // Add a blank page to the document
+            const page = pdfDoc.addPage()
+
+            const imageurl = 'http://localhost/chef_khalil_certificate/certificate.png';
+            const pngImageBytes = await fetch(imageurl).then(res => res.arrayBuffer())    ;
+            const pngImage = await pdfDoc.embedPng(pngImageBytes)
+
+            //841.89
+            //595.28
+            // Get the width and height of the page
+            page.setSize(841.89,595.28);
+            const { width, height } = page.getSize()
+            
+            // Draw a string of text toward the top of the page
+            const fontSize = 40;
+            page.drawImage(pngImage, {
+                x: 0,
+                y: 0,
+                width: width,
+                height: height,
+            })
+            page.drawText("Mahmoud Khalil", {
+                x: width/3,
+                y: 350,
+                size: fontSize,
+                font: font,
+                color: rgb(0, 0, 0)
+            })
+            page.drawText("فنون الطبخ الإحترافية", {
+                x: (width/3)-25,
+                y: 250,
+                size: fontSize,
+                font: font,
+                color: rgb(0, 0, 0)
+            })
+
+            // Serialize the PDFDocument to bytes (a Uint8Array)
+                const pdfBytes = await pdfDoc.save()
+
+
+                // Trigger the browser to download the PDF document
+                download(pdfBytes, "test.pdf", "application/pdf;charset='utf-8'");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="generateCertficate()">Generate</button>
+</body>
+</html>
