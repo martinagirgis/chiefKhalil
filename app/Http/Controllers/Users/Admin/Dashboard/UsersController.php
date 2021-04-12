@@ -162,8 +162,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $category = User::find($id);
-        return view('admin.sections.users.edit', compact('category'));
+        $users = User::find($id);
+        $packages = Package::get();
+        return view('admin.sections.users.edit', compact('users','packages'));
     }
 
     /**
@@ -173,41 +174,35 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $rules = [
-            'fname' => 'required',
-            'lname' => 'required',
-            'email' => 'required|unique:chiefs',
-            'password' => 'required',
-            'phone' => 'required',
-            'gender' => 'required',
-            'image' => 'required',
-            'package_id' => 'required'
-        ];
-
+        $rules = [];
         $validator = Validator::make($request->all(), $rules);
-
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
         } else {
-            $coverName = time() . '.' . $request->image->getClientOriginalExtension();
-            $request->image->move(public_path('/assets/images/users'), $coverName);
-
-            $chief = User::create([
+            if($request->image){
+              //  unlink(public_path('/assets/images/users') .'/' . $user->image);
+                $coverName = time() . '.' . $request->image->getClientOriginalExtension();
+                $request->image->move(public_path('/assets/images/users'), $coverName);
+            }else{
+                $coverName = $request->oldimg;
+            }
+                $user->update([
                 'fname' => $request['fname'],
                 'lname' => $request['lname'],
                 'email' => $request['email'],
+                'countryCode'=>$request->countryCode,
                 'phone' => $request['phone'],
                 'city' => $request['city'],
                 'gender' => $request['gender'],
                 'package_id' => $request['package_id'],
-                'state' => $request['state'],
-                'image' => $request['image'],
+                'state' => 1,
+                'image' =>   $coverName,
                 'password' => Hash::make($request['password']),
-                'user_type' => $request['user_type'],
+                'user_type' => 'Student',
             ]);//Create new User
-
+            $user->save();
 
             return redirect()->route('users.index')->with('success', 'The User has created successfully.');
         }

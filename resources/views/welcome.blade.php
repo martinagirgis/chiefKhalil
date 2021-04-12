@@ -108,7 +108,6 @@
                 <div id="empty">
 
                 </div>
-                {{ __('footer.mobile') }}
 
             </div>
         </div>

@@ -150,8 +150,8 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="btn btn-dark col-sm-12" href="{{route('users.show',['user'=>$category->id])}}">Show</a>
-                                        <a class="btn btn-dark col-sm-12"  href="{{route('chiefs.edit',['chief'=>$category->id])}}">Edit</a>
-                                        <form method="post" action="{{route('chiefs.destroy',['chief'=>$category->id])}}">
+                                        <a class="btn btn-dark col-sm-12"  href="{{route('users.edit',['user'=>$category->id])}}">Edit</a>
+                                        <form method="post" action="{{route('users.destroy',['user'=>$category->id])}}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-dark col-sm-12" >Delete</button>
