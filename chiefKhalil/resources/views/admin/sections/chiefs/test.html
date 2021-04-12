@@ -1,0 +1,49 @@
+<input type="text" onchange="NumOfFields()" id="skills">
+<div id="container">
+
+    <input type="text" id="sad" style="display:none">
+
+</div>
+
+<script>
+    var flag = 0;
+    if(flag === 1){
+        var oldVal=0;
+    }
+    function NumOfFields(){
+        var skills = document.getElementById('skills').value;
+        //alert(skills);
+        if(skills > 0) {
+            if (flag !== 1) {
+                var test = document.getElementById('sad');
+                for (var i = 0; i < skills; i++) {
+                    var newtest = test.cloneNode(true);
+                    newtest.style.display = "block";
+                    newtest.id = 'moka' + i;
+                    newtest.value = 'moka' + i;
+                    document.getElementById("container").appendChild(newtest);
+                    flag = 1;
+                    oldVal = skills;
+                }
+            } else if(oldVal !== null) {
+                alert('You have already specifiy number of skills ');
+                flag =0;
+                resetFields(oldVal);
+                //alert(oldVal + '' + skills);
+            }
+        }else{
+            alert('Enter a valid number');
+        }
+    }
+    function resetFields(oldVal){
+        for(var i=0;i<oldVal;i++) {
+            var myobj = document.getElementById("moka"+i);
+            myobj.remove();
+        }
+        NumOfFields();
+    }
+
+
+
+
+</script>
