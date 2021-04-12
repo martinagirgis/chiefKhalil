@@ -30,7 +30,6 @@ class HomeController extends Controller
         return view('home');
     }
 
-
     public function profile()
     {
         $package = UserPackages::find(Auth::guard('web')->user()->package_id);
@@ -45,12 +44,12 @@ class HomeController extends Controller
 
     public function update(Request $request)
     {
-
+        
         $currentUser = User::find(Auth::guard('web')->id());
 
         if ($request->img) {
             unlink(public_path('assets/site/backImages/users') .'/' . $currentUser->image);
-
+            
             $coverName = time() . '.' . $request->img->getClientOriginalExtension();
             $request->img->move(public_path('/assets/site/backImages/users'), $coverName);
         }
@@ -89,7 +88,7 @@ class HomeController extends Controller
             'password_confirmation' => 'required|same:Password',
         ];
         $this->validate($request,$rules);
-
+        
         if(Auth::Check())
     {
         $requestData = $request->All();

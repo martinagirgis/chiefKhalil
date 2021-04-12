@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-@extends('layouts.app')
-=======
 @extends('site.layouts.site')
 @section('loading')
     @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
@@ -172,7 +169,6 @@
 
 
 {{-- @extends('layouts.app')
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f1872962
 
 @section('content')
     <div class="container">
@@ -249,8 +245,4 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-@endsection
-=======
 @endsection --}}
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f1872962

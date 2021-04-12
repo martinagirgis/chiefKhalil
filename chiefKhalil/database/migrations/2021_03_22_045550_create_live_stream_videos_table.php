@@ -17,7 +17,6 @@ class CreateLiveStreamVideosTable extends Migration
             $table->id();
             $table->string('title_ar');
             $table->string('title_en');
-
             $table->string('description_ar');
             $table->string('description_en');
             $table->timestamp('start_date');

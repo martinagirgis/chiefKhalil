@@ -14,10 +14,11 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "2.4",
+        "laravel/ui": "^2.4|^3.2",
         "mcamara/laravel-localization": "^1.6",
         "nesbot/carbon": "^2.46",
-        "nexmo/laravel": "^2.4"
+        "nexmo/laravel": "^2.4",
+        "opentok/opentok": "4.4.x"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

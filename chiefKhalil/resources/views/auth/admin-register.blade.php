@@ -35,69 +35,7 @@
                     <div class="card-header">{{ __('Admin Register') }}</div>
 
                     <div class="card-body">
-
-                        <form method="POST" action="{{ route('admin.register.submit') }}">
-                            @csrf
-
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
-                            </div>
-=======
-
+                       
                         <form class="woocommerce-EditAccountForm edit-account" action="{{ route('admin.register.submit') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
@@ -123,7 +61,7 @@
                                 @enderror
                             </p>
 
-
+                            
                             <div class="clear">
 
                             </div>
@@ -223,17 +161,17 @@
                                 @enderror
                             </p>
 
-
+                                
 
                             <div class="form-group" style="width: 10%;">
                                 <label class="btn btn-default btn-block btn-file bg-warning" id="btnFileUpload"> <i class="fa fa-upload"></i> Image
                                   &nbsp;
-                                  <span id="spnFilePath"></span>
+                                  <span id="spnFilePath"></span>             
                                 <input type="file" id="FileUpload1" name="image" style="display: none;" required>
                                 </label>
                                 <label for="FileUpload1" id="file" style="display: none;">
                                     <span class="required">*</span>
-                                    Image
+                                    Image	
                                 </label>
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -250,7 +188,6 @@
                             </div>
                             </p>
 
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f1872962
                         </form>
                     </div>
                 </div>

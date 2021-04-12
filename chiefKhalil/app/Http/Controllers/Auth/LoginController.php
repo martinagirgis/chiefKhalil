@@ -40,7 +40,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -60,7 +59,7 @@ class LoginController extends Controller
                 session()->put('userId', $user->email);
                 return redirect('/package');
             }
-
+            
             else{
                 $this->incrementLoginAttempts($request);
                 $user->code=SendCode::sendCode($user->countryCode,$user->phone);

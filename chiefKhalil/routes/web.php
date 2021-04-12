@@ -14,7 +14,6 @@ use App\Http\Controllers\Martina;
 |
 */
 
-
 Route::post('getResult', 'Martina\IndexController@getResult')->name('getResult');
 Route::post('setComment', 'Martina\IndexController@setComment')->name('setComment');
 
@@ -26,10 +25,6 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
-
-        Route::get('/', function () {
-            return view('welcome');
-        });
 
         Route::get('/', 'Martina\IndexController@index')->name('index');
 
@@ -49,16 +44,14 @@ Route::group(
 
         Route::get('/home', 'HomeController@index')->name('home');
 
-
-        // Vendor routes
         // verify mobile code
         Route::get('/verify','Auth\VerifyController@getVerify')->name('getverify');
         Route::post('/verify','Auth\VerifyController@postVerify')->name('verify');
-
+        
         Route::any('/package','Auth\VerifyController@getPackages')->name('getPackages');
         Route::any('/payment/{id}','Auth\VerifyController@getPaymentt');
         Route::any('/addPackage','Auth\VerifyController@addPackage');
-
+        
         // profile
         Route::any('/profile','HomeController@profile')->name('myProfile');
         Route::any('/editProfileInfo','HomeController@edit');
@@ -66,13 +59,13 @@ Route::group(
         Route::any('/editProfileAccount','HomeController@editAccount');
         Route::any('/updateProfileAccount', 'HomeController@updateAccount')->name('updateAccount');
 
-        // all chiefs
+        // all chiefs 
         Route::get('/showChiefs', 'Martina\IndexController@showChiefs')->name('showChiefs');
 
         // chief courses
         Route::get('/chiefCourses/{id}', 'Martina\IndexController@chiefCourses')->name('chiefCourses');
 
-        // all courses
+        // all courses 
         Route::get('/showCourses', 'Martina\IndexController@showCourses')->name('showCourses');
 
         // add course to favorite
@@ -117,7 +110,7 @@ Route::group(
         // Enroll Course
         Route::any('enrollCourse/{id}', 'Martina\IndexController@enrollCourse')->name('enrollCourse');
 
-        // get Result
+        // get Result 
         // Route::any('getResult/{quizId}', 'Martina\IndexController@getResult')->name('getResult');
         // Route::post('/getResult', 'Martina\IndexController@getResult')->name('getResult');
 
@@ -143,7 +136,7 @@ Route::group(
             Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
             Route::get('/register', 'Auth\AdminRegisterController@showRegisterForm')->name('admin.register');
             Route::post('/register', 'Auth\AdminRegisterController@register')->name('admin.register.submit');
-
+    
             Route::get('password-reset', 'Auth\AdminForgotPasswordController@showForm')->name('admin.password.forget'); //I did not create this controller. it simply displays a view with a form to take the email
             Route::post('password-reset', 'Auth\AdminForgotPasswordController@sendPasswordResetToken')->name('admin.password.email');
             Route::get('reset-password/{token}', 'Auth\AdminForgotPasswordController@showPasswordResetForm');

@@ -1,8 +1,3 @@
-<!--<<<<<<< HEAD
-{{--
-@extends('layouts.app')
---}}
-=======-->
 @extends('site.layouts.site')
 @section('loading')
     @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
@@ -34,7 +29,7 @@
 
 @section('content')
 @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
-
+    
 
 <section class="ls s-pt-75 s-pb-60 s-py-lg-100 shop-account-login">
     <div class="container">
@@ -55,8 +50,8 @@
                             @endif
 
                             <form class="woocomerce-form woocommerce-form-login login text-center" method="post" action="{{ route('password.update') }}">
-                                @csrf
-
+                                @csrf 
+                                
                                 <input type="hidden" name="token" value="{{ $token }}">
 
                                 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
@@ -69,7 +64,7 @@
                                         </span>
                                     @enderror
                                 </p>
-
+                                
                                 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                     <label for="password">password</label>
                                     <input type="password" class="woocommerce-Input woocommerce-Input--password input-text" minlength="8" name="password" id="password" placeholder="password" required>
@@ -95,7 +90,7 @@
                                 </p>
                             </form>
 
-
+                            
 
                         </div>
                     </div>
@@ -132,7 +127,7 @@
                             @endif
 
                             <form class="woocomerce-form woocommerce-form-login login text-center" method="post" action="{{ route('password.update') }}">
-                                @csrf
+                                @csrf 
 
                                 <input type="hidden" name="token" value="{{ $token }}">
 
@@ -146,7 +141,7 @@
                                         </span>
                                     @enderror
                                 </p>
-
+                                
                                 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                     <label for="password">كلمة المرور</label>
                                     <input type="password" class="woocommerce-Input woocommerce-Input--password input-text" minlength="8" name="password" id="password" placeholder="كلمة المرور" required>
@@ -259,7 +254,4 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-@endsection
-=======
 @endsection --}}

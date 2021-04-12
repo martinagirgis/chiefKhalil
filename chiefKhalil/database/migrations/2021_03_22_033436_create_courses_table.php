@@ -30,7 +30,7 @@ class CreateCoursesTable extends Migration
             $table->foreign('chief_id')->references('id')->on('chiefs');
 
             $table->text('image');
-
+            
             $table->timestamps();
         });
     }

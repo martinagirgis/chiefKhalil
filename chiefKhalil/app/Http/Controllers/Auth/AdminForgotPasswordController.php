@@ -28,10 +28,10 @@ class AdminForgotPasswordController extends Controller
         $user = Admin::where('email', $request->email)->first();
         if ( !$user ) return redirect()->back()->withErrors(['error' => '404']);
 
-        //create a new token to be sent to the user.
+        //create a new token to be sent to the user. 
         DB::table('password_resets')->insert([
             'email' => $request->email,
-            'token' => Str::random(36),
+            'token' => Str::random(36), 
             'created_at' => Carbon::now()
         ]);
 
@@ -39,10 +39,9 @@ class AdminForgotPasswordController extends Controller
         ->where('email', $request->email)->first();
 
         $token = $tokenData->token;
-        $email = $request->email;
+        $email = $request->email; 
 
         Mail::to($request->email)->send(new SendSBTorecipient($token));
-
 
         return redirect('admin/login')->with('success','email successfully send chick your mail');
 
@@ -55,7 +54,7 @@ class AdminForgotPasswordController extends Controller
         // $data = array('name'=>"Virat Gandhi");
         // $tok = array('url'=>'<a href="https://localhost:8080/password-reset/'. $token .'">reset password</a>');
         // Mail::send($tok,["data1"=>$data], function($message) {
-
+            
         //    $message->to('michealadel1212@gmail.com', 'Tutorials Point')
         //    ->subject('reset password')->setBody('<a href="https://localhost:8080/password-reset/'. $data1["name"] .'">reset password</a>', 'text/html');
         //    $message->from('martinasaid2018@gmail.com','Virat Gandhi');
@@ -68,7 +67,7 @@ class AdminForgotPasswordController extends Controller
         $token=$token;
         $tokenData = DB::table('password_resets')
         ->where('token', $token)->first();
-
+        
         //print_r($tokenData);
         if ( !$tokenData ) return redirect()->to('home');
 
@@ -78,21 +77,20 @@ class AdminForgotPasswordController extends Controller
     public function resetPassword(Request $request, $token)
     {
         //some validation
-
+   
         $password = $request->password;
         $tokenData = DB::table('password_resets')
         ->where('token', $token)->first();
-
+   
         $user = Admin::where('email', $tokenData->email)->first();
-        if ( !$user ) return redirect()->to('home');
-
+        if ( !$user ) return redirect()->to('home'); 
+   
         $user->password = Hash::make($password);
-        $user->update();
-
+        $user->update(); 
+   
        DB::table('password_resets')->where('email', $user->email)->delete();
-
-
-       return redirect('admin/login')->with('success','event successfully updated');
+   
+       return redirect('admin/login')->with('success','password successfully changed');
     }
 
 }

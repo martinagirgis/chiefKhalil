@@ -19,8 +19,8 @@ class CreateCourseLessonQuizAnswerUserMarkTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->unsignedBigInteger('courses_lessons_quiz_id');
-            $table->foreign('courses_lessons_quiz_id')->references('id')->on('courses_lessons_quiz');
+            $table->unsignedBigInteger('quiz_id');
+            $table->foreign('quiz_id')->references('id')->on('courses_lessons_quiz');
 
 //            $table->unsignedBigInteger('courses_lessons_quiz_id');
 //            $table->foreign('courses_lessons_quiz_id')->references('id')->on('courses_lessons_quiz');

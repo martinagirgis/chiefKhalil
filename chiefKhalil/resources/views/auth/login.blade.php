@@ -29,7 +29,7 @@
 
 @section('content')
 @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
-
+    
     <section class="ls s-pt-75 s-pb-60 s-py-lg-100 shop-account-login">
         <div class="container">
             <div class="row">
@@ -52,7 +52,7 @@
                                 <form class="woocomerce-form woocommerce-form-login login text-center" method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                        <label for="username">Email
+                                        <label for="username">Email 
                                             <span class="required">*</span>
                                         </label>
                                         <input type="text" class="woocommerce-Input woocommerce-Input--text input-text text-center @error('email') is-invalid @enderror" name="email" id="email1" value="" placeholder="Email ">
@@ -63,7 +63,7 @@
                                         @enderror
                                     </p>
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                        <label for="password">Password
+                                        <label for="password">Password 
                                             <span class="required">*</span>
                                         </label>
                                         <input class="woocommerce-Input woocommerce-Input--text input-text text-center @error('password') is-invalid @enderror" name="password" type="password" id="password1" placeholder="Password ">
@@ -168,7 +168,6 @@
 @endsection
 
 {{-- @section('content')
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f1872962
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -238,7 +237,4 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-@endsection
-=======
 @endsection --}}

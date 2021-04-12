@@ -29,7 +29,7 @@
 
 @section('content')
 @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
-
+    
     <section class="ls s-pt-75 s-pb-60 s-py-lg-100 shop-account-login">
         <div class="container">
             <div class="row">
@@ -53,7 +53,7 @@
 									<h4 class="margin-20">Account Information
 									</h4>
 								</header>
-
+                                
                                 <form class="woocommerce-EditAccountForm edit-account" action="{{ route('chief.register.submit') }}" method="post">
                                     @csrf
                                     <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
@@ -79,7 +79,7 @@
                                         @enderror
                                     </p>
 
-
+                                    
                                     <div class="clear">
 
                                     </div>
@@ -191,17 +191,17 @@
                                         @enderror
                                     </p>
 
-
+                                        
 
                                     <div class="form-group" style="width: 10%;">
                                         <label class="btn btn-default btn-block btn-file bg-warning" id="btnFileUpload"> <i class="fa fa-upload"></i> Image
                                           &nbsp;
-                                          <span id="spnFilePath"></span>
+                                          <span id="spnFilePath"></span>             
                                         <input type="file" id="FileUpload1" name="img" style="display: none;" required>
                                         </label>
                                         <label for="FileUpload1" id="file" style="display: none;">
                                             <span class="required">*</span>
-                                            Image
+                                            Image	
                                         </label>
                                         @error('img')
                                             <span class="invalid-feedback" role="alert">
@@ -251,12 +251,12 @@
                                         <strong>{{ $message }}</strong>
                                     </div>
                                 @endif
-
+                                
                                 <header class="entry-header">
 									<h4 class="margin-20 text-right">بيانات الحساب
 									</h4>
 								</header>
-
+                                
                                 <form dir="rtl" class="woocommerce-EditAccountForm edit-account" action="{{ route('chief.register.submit') }}" method="post">
                                     @csrf
                                     <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
@@ -282,7 +282,7 @@
                                         @enderror
                                     </p>
 
-
+                                    
                                     <div class="clear">
 
                                     </div>
@@ -382,17 +382,17 @@
                                         @enderror
                                     </p>
 
-
+                                        
 
                                     <div class="form-group" style="width: 10%;">
                                         <label class="btn btn-default btn-block btn-file bg-warning" id="btnFileUpload"> <i class="fa fa-upload"></i> الصورةالشخصيه
                                           &nbsp;
-                                          <span id="spnFilePath"></span>
+                                          <span id="spnFilePath"></span>             
                                         <input type="file" id="FileUpload1" name="img" style="display: none;" required>
                                         </label>
                                         <label class="text-right" for="FileUpload1" id="file" style="display: none;">
                                             <span class="required">*</span>
-                                            الصورة الشخصية
+                                            الصورة الشخصية	
                                         </label>
                                         @error('img')
                                             <span class="invalid-feedback" role="alert">
@@ -432,7 +432,6 @@
 
 
 {{-- @extends('layouts.app')
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f1872962
 
 @section('content')
     <div class="container">
@@ -508,7 +507,4 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-@endsection
-=======
 @endsection --}}

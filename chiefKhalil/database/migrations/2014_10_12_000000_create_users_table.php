@@ -23,10 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
 
             $table->string('phone');
-
             $table->string('countryCode');
             $table->string('code')->nullable();
-            //chick correct code
+            //chick correct code  
             $table->boolean('active')->default(0);
 
             $table->rememberToken();

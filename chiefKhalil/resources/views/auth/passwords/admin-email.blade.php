@@ -29,7 +29,7 @@
 
 @section('content')
 @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
-
+    
 
 <section class="ls s-pt-75 s-pb-60 s-py-lg-100 shop-account-login">
     <div class="container">
@@ -51,8 +51,8 @@
                                 @endif
 
                             <form class="woocomerce-form woocommerce-form-login login text-center" method="post" action="{{ route('admin.password.email') }}">
-                                @csrf
-
+                                @csrf 
+                                
                                 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                     <label for="email">   Email
                                         <span class="required">*</span>
@@ -68,7 +68,7 @@
                                 </p>
                             </form>
 
-
+                            
 
                         </div>
                     </div>
@@ -106,8 +106,8 @@
                                 @endif
 
                             <form class="woocomerce-form woocommerce-form-login login text-center" method="post" action="{{ route('admin.password.email') }}">
-                                @csrf
-
+                                @csrf 
+                                
                                 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                     <label for="email">   البريد الالكتروني
                                         <span class="required">*</span>
@@ -125,7 +125,7 @@
 
                             </form>
 
-
+                            
 
                         </div>
                     </div>
@@ -151,7 +151,6 @@
 
 
 {{-- @extends('layouts.app')
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f1872962
 
 @section('content')
 <div class="container">
@@ -197,7 +196,4 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-@endsection
-=======
 @endsection --}}

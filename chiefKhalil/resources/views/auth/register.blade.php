@@ -1,8 +1,3 @@
-<!--<<<<<<< HEAD
-{{--
-@extends('layouts.app')
---}}
-=======-->
 @extends('site.layouts.site')
 @section('loading')
     @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
@@ -34,7 +29,7 @@
 
 @section('content')
 @if (    LaravelLocalization::getCurrentLocaleName() == 'English')
-
+    
     <section class="ls s-pt-75 s-pb-60 s-py-lg-100 shop-account-login">
         <div class="container">
             <div class="row">
@@ -62,10 +57,10 @@
 									<h4 class="margin-20">Account Information
 									</h4>
 								</header>
-
+                                
                                 <form class="woocommerce-EditAccountForm edit-account" action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                                     @csrf
-
+                                    
                                     <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
                                         <label for="fname">First Name
                                             <span class="required">*</span>
@@ -90,7 +85,7 @@
                                         @enderror
                                     </p>
 
-
+                                    
                                     <div class="clear">
 
                                     </div>
@@ -378,17 +373,17 @@
                                         @enderror
                                     </p>
 
-
+                                        
 
                                     <div class="form-group" style="width: 10%;">
                                         <label class="btn btn-default btn-block btn-file bg-warning" id="btnFileUpload"> <i class="fa fa-upload"></i> Image
                                           &nbsp;
-                                          <span id="spnFilePath"></span>
+                                          <span id="spnFilePath"></span>             
                                         <input accept="image/*" type="file" id="FileUpload1" name="image" style="display: none;" required>
                                         </label>
                                         <label for="FileUpload1" id="file" style="display: none;">
                                             <span class="required">*</span>
-                                            Image
+                                            Image	
                                         </label>
                                         @error('image')
                                             <span class="invalid-feedback" role="alert">
@@ -437,17 +432,17 @@
                                         <button type="button" class="close" data-dismiss="alert">×</button>
                                         <strong>{{ $message }}</strong>
                                     </div>
-                                @endif
+                                @endif 
 
                                 <div dir="rtl" class="progress" style="height: 15px !important;">
                                     <div class="progress-bar bg-success" role="progressbar"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-
+                                
                                 <header class="entry-header">
 									<h4 class="margin-20 text-right">بيانات الحساب
 									</h4>
 								</header>
-
+                                
                                 <form dir="rtl" class="woocommerce-EditAccountForm edit-account" action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
@@ -473,7 +468,7 @@
                                         @enderror
                                     </p>
 
-
+                                    
                                     <div class="clear">
 
                                     </div>
@@ -739,9 +734,9 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-
+                                    
                                     </p>
-
+                                    
 
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                         <label for="password">كلمة المرور</label>
@@ -763,17 +758,17 @@
                                         @enderror
                                     </p>
 
-
+                                        
 
                                     <div class="form-group" style="width: 10%;">
                                         <label class="btn btn-default btn-block btn-file bg-warning" id="btnFileUpload"> <i class="fa fa-upload"></i> الصورةالشخصيه
                                           &nbsp;
-                                          <span id="spnFilePath"></span>
+                                          <span id="spnFilePath"></span>             
                                         <input accept="image/*" type="file" id="image" name="image" style="display: none;" required>
                                         </label>
                                         <label class="text-right" for="image" id="file" style="display: none;">
                                             <span class="required">*</span>
-                                            الصورة الشخصية
+                                            الصورة الشخصية	
                                         </label>
                                         @error('image')
                                             <span class="invalid-feedback" role="alert">
@@ -812,7 +807,6 @@
 
 
 {{-- @extends('layouts.app')
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f1872962
 
 @section('content')
 <div class="container">
@@ -854,8 +848,6 @@
                         </div>
 
                         <div class="form-group row">
-<<<<<<< HEAD
-=======
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
@@ -870,7 +862,6 @@
                         </div>
 
                         <div class="form-group row">
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f1872962
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -905,7 +896,4 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-@endsection
-=======
 @endsection --}}

@@ -21,8 +21,8 @@ class CreateCoursesLessonsTable extends Migration
             $table->string('details_ar');
             $table->string('details_en');
 
-            $table->text('video');
-            $table->text('image');
+            $table->string('url');
+            $table->string('image');
             $table->integer('lesson_number');
 
             $table->unsignedBigInteger('course_id');

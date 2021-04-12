@@ -12,7 +12,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\SendCode;
 
-
 class RegisterController extends Controller
 {
     /*
@@ -33,11 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-//<<<<<<< HEAD
-    protected $redirectTo = RouteServiceProvider::HOME;
-/*=======
     protected $redirectTo  = '/verify';
->>>>>>> 309408b707ad2bee25612f1b5b3442e0f187296*/
 
     /**
      * Create a new controller instance.
@@ -48,7 +43,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
 
     public function register(Request $request)
     {
@@ -67,7 +61,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-
             // 'fname' => ['required', 'string', 'max:255'],
             // 'lname' => ['required', 'string', 'max:255'],
             // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -83,11 +76,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
         $imageName = time().'.'.$data['image']->extension();
         $data['image']->move(public_path('assets/site/backImages/users'), $imageName);
         $allphone = $data['countryCode'] . $data['phone'];
@@ -104,7 +92,7 @@ class RegisterController extends Controller
             'countryCode' => $data['countryCode'],
             'code'=>SendCode::sendCode($data['countryCode'],$data['phone']),
         ]);
-        //if($user){
+        //if($user){ 
           //  $user->code=SendCode::sendCode($user->phone);
             $user->save();
         //}
